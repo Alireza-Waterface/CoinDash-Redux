@@ -1,75 +1,122 @@
-# React + TypeScript + Vite
+# CoinDash 🪙 — Professional Crypto Portfolio Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=white)
 
-Currently, two official plugins are available:
+> **A feature-rich DeFi Dashboard simulating real-world portfolio management, built to demonstrate advanced proficiency in Redux Toolkit, Async State Management, and Modern React Architecture.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📖 Project Overview
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+**CoinDash** is a real-time cryptocurrency dashboard that allows users to track market trends and manage a virtual portfolio.
 
-Note: This will impact Vite dev & build performances.
+Unlike simple "counter apps," this project simulates a complex production environment by integrating **Server State** (live API data) with **Client State** (user portfolio holdings) and **UI State** (themes, notifications). It solves real-world frontend challenges such as data caching, race conditions, derived state calculations, and performance optimization.
 
-## Expanding the ESLint configuration
+### 🎯 Project Goal
+The primary goal of this application is to demonstrate **Enterprise-Level State Management** using the modern Redux ecosystem, moving beyond basic CRUD to handle asynchronous data flows and complex state derivation.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ✨ Key Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🚀 Core Functionality
+-   **Live Market Data:** Real-time prices, 24h changes, and market caps fetched from the CoinGecko API.
+-   **Virtual Portfolio:** Simulate Buying/Selling assets. The app calculates your "Net Worth" dynamically based on live prices and your specific holdings.
+-   **Interactive Charts:** 7-Day historical price trends visualized using Area Charts (Recharts).
+-   **Advanced Filtering:** Search, Sort by Rank, Price, or Gainers/Losers with memoized performance.
+-   **Global UI System:**
+    -   Dark/Light Mode toggle (persisted in LocalStorage).
+    -   Custom Toast Notification system (Redux-managed).
+    -   Responsive Design (Mobile-First approach).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🛠 Technical Highlights
+-   **Async Redux (RTK Query):** utilizes `createApi` for data fetching, caching (preventing over-fetching), and automatic loading/error states.
+-   **Feature-Based Architecture:** Code is organized by domain (`features/market`, `features/portfolio`) rather than file type, scalable for large teams.
+-   **Performance Optimization:**
+    -   **React Compiler:** Utilizing the latest React 19 compiler features.
+    -   **Code Splitting:** Route-based lazy loading with `React.lazy` and `Suspense`.
+    -   **Memoization:** Heavy calculations (sorting/filtering) are memoized to prevent re-renders.
+-   **Modern Routing:** Implements **React Router v7** using `createBrowserRouter` and Data Router patterns.
+
+---
+
+## 🏗 Tech Stack & Libraries
+
+| Category | Technology | Usage |
+| :--- | :--- | :--- |
+| **Framework** | React 18+ (Vite) | Core UI Library |
+| **Language** | TypeScript | Strict static typing for props, state, and API responses |
+| **State Management** | **Redux Toolkit** | `createSlice` for client state, `createApi` (RTK Query) for server state |
+| **Routing** | React Router DOM (v7) | Client-side routing, Lazy loading, Layouts |
+| **Styling** | Tailwind CSS | Utility-first styling, Dark mode configuration |
+| **Visualization** | Recharts | Composable charting library for React |
+| **Icons** | Lucide / HeroIcons | SVG Icons |
+
+---
+
+## 📂 Project Structure
+
+```bash
+src/
+├── app/                  # Global Redux Store configuration & Typed Hooks
+├── components/           # Reusable UI components (Layout, Modal, Toast, Loader)
+├── features/             # Feature-based logic modules
+│   ├── market/           # API Services (RTK Query) & Market Components
+│   ├── portfolio/        # Portfolio Slice (Client State) & Logic
+│   └── ui/               # UI Slice (Theme, Toasts)
+├── pages/                # Page-level components (Lazy Loaded)
+├── types/                # Shared TypeScript interfaces
+├── hooks/                # Custom React Hooks (useClickOutside)
+└── main.tsx              # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting started
+Follow these steps to run project locally.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+-  NodeJS v18.* or higher
+-  npm / yarn / bun (I used bun for this project)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   1. Clone the repositoru
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/coindash.git
+   cd coindash
+   ```
+
+   2. Install dependencies
+   ```bash
+   bun install
+   ```
+
+   3. Environment Setup
+      Create a `.env` file in the root directory. You can use the CoinGecko public demo API.
+   ```bash
+   VITE_CG_API_KEY=YOUR_API_KEY_FROM_COINGECKO
+   VITE_CG_BASE_URL=https://api.coingecko.com/api/v3
+   ```
+
+   4. Run the Development Server
+   ```bash
+   bun run dev
+   ```
+
+   Open `http://localhost:5173` in your browser.
+
+## 🔮 Future Insights & Roadmap
+  This project is designed to be scalable. Here are the planned next steps:
+
+  1. Backend Integration: Replace LocalStorage persistence with a real backend (Node.js/Supabase) to store user portfolios permanently.
+  2. Authentication: Add User Login/Signup to support multiple user profiles.
+  3. Transaction History: Create a specialized Slice to track every Buy/Sell event for tax/audit purposes.
+  4. WebSocket Integration: Replace polling with WebSockets for sub-second price updates.
+  5. PWA Support: Make the app installable on mobile devices.
+
+
+## Created by [Alireza Abchehre] - Built to showcase advanced React & Redux proficiency.
+
+
+## ❤️✌️ Thanks for your time & attention.
