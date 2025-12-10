@@ -74,6 +74,8 @@ src/
 └── main.tsx              # Entry point
 ```
 
+### Project is accessible and you can view online on this URL: <a href="https://coindash-wf.netlify.app">coindash-wf.netlify.app</a>
+
 ## 🚀 Getting started
 Follow these steps to run project locally.
 
