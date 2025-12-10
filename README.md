@@ -48,7 +48,7 @@ The primary goal of this application is to demonstrate **Enterprise-Level State 
 
 | Category | Technology | Usage |
 | :--- | :--- | :--- |
-| **Framework** | React 18+ (Vite) | Core UI Library |
+| **Framework** | React 19+ (Vite) | Core UI Library |
 | **Language** | TypeScript | Strict static typing for props, state, and API responses |
 | **State Management** | **Redux Toolkit** | `createSlice` for client state, `createApi` (RTK Query) for server state |
 | **Routing** | React Router DOM (v7) | Client-side routing, Lazy loading, Layouts |
@@ -81,9 +81,9 @@ Follow these steps to run project locally.
 -  NodeJS v18.* or higher
 -  npm / yarn / bun (I used bun for this project)
 
-   1. Clone the repositoru
+   1. Clone the repository
    ```bash
-   git clone https://github.com/YOUR_USERNAME/coindash.git
+   git clone https://github.com/Alireza-Waterface/CoinDash-Redux.git
    cd coindash
    ```
 
